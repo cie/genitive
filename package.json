@@ -1,0 +1,22 @@
+{
+  "name": "genitive",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "node src/test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cie/genitive.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cie/genitive/issues"
+  },
+  "homepage": "https://github.com/cie/genitive#readme",
+  "dependencies": {
+    "js-yaml": "^3.14.0"
+  }
+}

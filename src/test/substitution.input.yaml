@@ -1,0 +1,3 @@
+greeting: Hello, <who>!
+who: Worl<last-char>
+last-char: d
