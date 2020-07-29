@@ -20,6 +20,8 @@ files.forEach(file => {
     console.log(`${rfile} failed`)
     ok = false
     fs.writeFileSync(rfile, output)
+  } else {
+    if (fs.existsSync(rfile)) fs.unlinkSync(rfile)
   }
 })
 if (!ok) {
