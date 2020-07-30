@@ -1,6 +1,7 @@
 greeting:
   style=formal: Good morning <title>!
   style=informal: Hi <title>!
+  style=formal|style=informal: Hello <title>!
 title:
   style=formal: [Sir, Madam]
   style=informal: Dude

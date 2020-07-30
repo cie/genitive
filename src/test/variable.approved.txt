@@ -1,3 +1,6 @@
 Good morning Sir!
 Good morning Madam!
 Hi Dude!
+Hello Sir!
+Hello Madam!
+Hello Dude!
