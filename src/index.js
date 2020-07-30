@@ -3,7 +3,7 @@ module.exports = function (code) {
     if (typeof v === 'string') {
       const m = /<(?:(.*):)?([^>]+)>/.exec(v)
       if (!m) return void (yield v)
-      const filters = m[1] === undefined ? [] : m[1].split(':')
+      const filters = m[1] === undefined ? [] : m[1].split(/:(?!=)/)
       for (const filter of filters)
         if (!(env = applyFilter(filter, env))) return
       const end = m.index + m[0].length

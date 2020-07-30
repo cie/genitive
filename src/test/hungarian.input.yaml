@@ -8,18 +8,16 @@ gondolat:
         cplx += 1: gondolod, hogy <gondolat>
 
 névelős_szó:
-  - az <mgh_fogalom>
-  - a <msh_fogalom>
+  - az <eleje:=mgh:fogalom>
+  - a <eleje:=msh:fogalom>
   - egy <fogalom>
 
 fogalom:
-  - <mgh_fogalom>
-  - <msh_fogalom>
-mgh_fogalom:
-  - álom
-msh_fogalom:
-  - képzelet
-  - távolság
-  - valóság
+  eleje=mgh:
+    - álom
+  eleje=msh:
+    - képzelet
+    - távolság
+    - valóság
 
 állítás: <névelős_szó>
