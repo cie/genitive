@@ -3,12 +3,11 @@ module.exports = function (code) {
     if (typeof v === 'string') {
       const m = /<(?:(.*):)?([^>]+)>/.exec(v)
       if (!m) return void (yield v)
+      const filters = m[1] === undefined ? [] : m[1].split(':')
+      for (const filter of filters)
+        if (!(env = applyFilter(filter, env))) return
       const end = m.index + m[0].length
       const head = v.slice(0, m.index)
-      const filters = m[1] === undefined ? [] : m[1].split(':')
-      for (const filter of filters) {
-        if (!(env = applyFilter(filter, env))) return
-      }
       const key = m[2]
       if (!(key in code)) throw new Error(`<${key}> is undefined`)
       for (const substitution of expand(code[key], env))
