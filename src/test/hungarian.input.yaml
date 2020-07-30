@@ -1,0 +1,20 @@
+gondolat:
+  - <állítás>
+  - lehet, hogy <gondolat>
+
+névelős_szó:
+  - az <mgh_fogalom>
+  - a <msh_fogalom>
+  - egy <fogalom>
+
+fogalom:
+  - <mgh_fogalom>
+  - <msh_fogalom>
+mgh_fogalom:
+  - álom
+msh_fogalom:
+  - képzelet
+  - távolság
+  - valóság
+
+állítás: <névelős_szó>

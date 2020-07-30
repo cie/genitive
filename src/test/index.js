@@ -31,5 +31,11 @@ console.log('OK')
 
 function evalTestCase (input) {
   const grammar = genitive(input)
-  return [...grammar(`<${Object.keys(input)[0]}>`)].join('\n')
+  return [...take(10, grammar(`<${Object.keys(input)[0]}>`))].join('\n')
+}
+
+function * take (n, gen) {
+  for (let i = 0, r = gen.next(); !r.done && i < n; ++i, r = gen.next()) {
+    yield r.value
+  }
 }
