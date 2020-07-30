@@ -1,6 +1,14 @@
 gondolat:
-  - <állítás>
-  - lehet, hogy <gondolat>
+  cplx?=0:
+    - <állítás>
+    - cplx < 2:
+        cplx += 1:
+          lehet_hogy!=1: lehet, hogy <gondolat-lehet_hogy>
+    - cplx < 2:
+        cplx += 1: gondolod, hogy <gondolat>
+
+gondolat-lehet_hogy:
+  lehet_hogy:=1: <gondolat>
 
 névelős_szó:
   - az <mgh_fogalom>

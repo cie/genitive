@@ -31,7 +31,7 @@ console.log('OK')
 
 function evalTestCase (input) {
   const grammar = genitive(input)
-  return [...take(10, grammar(`<${Object.keys(input)[0]}>`))].join('\n')
+  return [...take(50, grammar(`<${Object.keys(input)[0]}>`))].join('\n')
 }
 
 function * take (n, gen) {

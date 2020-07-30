@@ -14,13 +14,38 @@ module.exports = function (code) {
       for (const elem of v) for (const result of expand(elem, env)) yield result
     } else if (typeof v === 'object' && v !== null) {
       for (const [filter, w] of Object.entries(v)) {
-        const m = /^(.*)=(.*)$/.exec(filter)
+        const m = /^(.*?)\s*(=|:=|!=|<=|<|>=|>|\+=|-=|\*=|\?=)\s*(.*)$/.exec(
+          filter
+        )
         if (!m) throw new Error('invalid filter: ' + filter)
-        const [_, variable, value] = m
-        if (variable in env && env[variable] !== value) continue
-        for (const result of expand(w, { ...env, [variable]: value }))
-          yield result
+        const [_, variable, operator, value] = m
+        if (!checkVar(variable, operator, value, env)) continue
+        const newEnv = assignVar(variable, operator, value, env)
+        for (const result of expand(w, newEnv)) yield result
       }
     } else throw new Error('invalid value: ' + JSON.stringify(v))
   }
+}
+
+function checkVar (variable, operator, value, env) {
+  if (operator === ':=' || operator === '?=') return true
+  if (operator === '!=') return !(variable in env) || env[variable] !== value
+  if (operator == '=') return !(variable in env) || env[variable] == value
+  if (!(variable in env)) throw new Error(`${variable} has no value`)
+  const current = env[variable]
+  if (operator === '<') return current < value
+  if (operator === '<=') return current <= value
+  if (operator === '>') return current > value
+  if (operator === '>=') return current >= value
+  return true
+}
+
+function assignVar (variable, operator, value, env) {
+  if (operator === ':=' || operator == '=') return { ...env, [variable]: value }
+  if (operator === '?=')
+    return variable in env ? env : { ...env, [variable]: value }
+  if (operator === '+=') return { ...env, [variable]: +env[variable] + +value }
+  if (operator === '-=') return { ...env, [variable]: env[variable] - value }
+  if (operator === '*=') return { ...env, [variable]: env[variable] * value }
+  return env
 }
